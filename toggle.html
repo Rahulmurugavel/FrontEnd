@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f9; /* Light Grayish background */
+            font-family: Arial, sans-serif;
+        }
+        .task_1, .task_2 {
+            margin: 30px 0;
+        }
+        .switchbox, .switchbox2 {
+            text-align: center;
+        }
+        .switchbut {
+            height: 40px;
+            width: 120px;
+            border-radius: 10px;
+            border: 2px solid #0056b3; /* Dark Blue Border */
+            background-color: #007bff; /* Blue Button */
+            color: white;
+            font-weight: bold;
+        }
+        .task2button, .task2button2, .task2button3, .task2button4 {
+            width: 160px;
+            height: 45px;
+            margin: 10px;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid;
+        }
+        .task2button { background-color: #6c757d; color: white; border-color: #6c757d; } /* Dark Gray */
+        .task2button2 { background-color: #ffc107; color: black; border-color: #ffc107; } /* Amber */
+        .task2button3 { background-color: #dc3545; color: white; border-color: #dc3545; } /* Red */
+        .task2button4 { background-color: #28a745; color: white; border-color: #28a745; } /* Green */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4">Task 1</h1>
+        <div class="task_1 d-flex justify-content-center">
+            <div class="switchbox text-center">
+                <img src="../assets/images/Alexander.jpg" alt="china" id="img1" class="img-fluid" width="300px"><br>
+                <h2 id="title1" class="mt-3">China</h2>
+                <button class="switchbut mt-2" type="button" onclick="toggleImage()">Switch</button>
+            </div>
+        </div>
+        <hr>
+        <h1 class="text-center mt-4">Task 2</h1>
+        <div class="task_2 d-flex justify-content-center">
+            <div class="switchbox2 text-center">
+                <img src="../assets/images/china.jpg" alt="tajmahal" id="img2" class="img-fluid mb-3" width="400px">
+                <h3 id="imgtitle">Taj Mahal</h3>
+                <div class="d-flex justify-content-center flex-wrap mt-3">
+                    <button type="button" onclick="switchImage('christ')" class="btn task2button">Christ</button>
+                    <button type="button" onclick="switchImage('colo')" class="btn task2button2">Colo</button>
+                    <button type="button" onclick="switchImage('pyramid')" class="btn task2button3">Pyramid</button>
+                    <button type="button" onclick="switchImage('machu')" class="btn task2button4">Machu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to toggle between China and Petra in Task 1
+        function toggleImage() {
+            const img1 = document.getElementById("img1");
+            const title1 = document.getElementById("title1");
+
+            if (img1.alt === "china") {
+                img1.src = "../assets/images/";
+                img1.alt = "petra";
+                title1.textContent = "Petra";
+            } else {
+                img1.src = "./china.jpg";
+                img1.alt = "china";
+                title1.textContent = "China";
+            }
+        }
+
+        // Function to switch images dynamically in Task 2
+        function switchImage(character) {
+            const img2 = document.getElementById("img2");
+            const imgtitle = document.getElementById("imgtitle");
+
+            const imageMap = {
+                christ: "./christ.jpg",
+                colo: "./colo.webp",
+                pyramid: "./pyramid.jpg",
+                machu: "./machu.jpg"
+            };
+
+            img2.src = imageMap[character];
+            imgtitle.textContent = {
+                christ: "Christ the Redeemer",
+                colo: "Colosseum",
+                pyramid: "Pyramid of Giza",
+                machu: "Machu Picchu"
+            }[character];
+        }
+    </script>
+</body>
+</html>

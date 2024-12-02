@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Form Validation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">User Registration Form</h2>
+        <form name="myform" class="bg-white p-4 rounded shadow-sm" onsubmit="return checkData()">
+            <!-- Full Name -->
+            <div class="mb-3">
+                <label for="fname" class="form-label">Full Name:</label>
+                <input type="text" id="fname" name="fname" class="form-control" placeholder="Enter your full name">
+            </div>
+
+            <!-- Qualification -->
+            <div class="mb-3">
+                <label class="form-label">Qualification:</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="highschool" name="edu" value="highschool" class="form-check-input">
+                    <label for="highschool" class="form-check-label">High School</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="graduate" name="edu" value="graduate" class="form-check-input">
+                    <label for="graduate" class="form-check-label">Graduate</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="postgraduate" name="edu" value="postgraduate" class="form-check-input">
+                    <label for="postgraduate" class="form-check-label">Postgraduate</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="other" name="edu" value="other" class="form-check-input">
+                    <label for="other" class="form-check-label">Other</label>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="mail" class="form-label">Email:</label>
+                <input type="email" id="mail" name="mail" class="form-control" placeholder="Enter your email">
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="pass" class="form-label">Password:</label>
+                <input type="password" id="pass" name="pass" class="form-control" placeholder="Enter a strong password">
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-3">
+                <label class="form-label">Gender:</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="male" name="gen" value="male" class="form-check-input">
+                    <label for="male" class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="female" name="gen" value="female" class="form-check-input">
+                    <label for="female" class="form-check-label">Female</label>
+                </div>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="mb-3">
+                <label for="num" class="form-label">Contact Number:</label>
+                <input type="text" id="num" name="num" class="form-control" placeholder="Enter your contact number">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function checkData() {
+            let uname = document.myform.fname.value;
+            let uedu = document.myform.edu;
+            let email = document.myform.mail.value;
+            let pass = document.myform.pass.value;
+            let gen = document.myform.gen;
+            let con = document.myform.num.value;
+            let regname = "^[a-zA-Z ]{3,20}$";
+            let rpass = "^[a-zA-Z0-9!@#$%^&*]{6,16}$";
+            let rmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let rnum = "^[0-9]{9,11}$";
+
+            if (uname.trim() === "") {
+                alert("Full name required");
+                document.getElementById("fname").focus();
+                return false;
+            }
+            if (!uname.trim().match(regname)) {
+                alert("Full name must be between 3 to 20 characters");
+                document.getElementById("fname").focus();
+                return false;
+            }
+            if (![...uedu].some((radio) => radio.checked)) {
+                alert("Select at least one qualification");
+                return false;
+            }
+            if (!pass.trim().match(rpass)) {
+                alert("Password should be strong (6-16 characters)");
+                return false;
+            }
+            if (!email.trim().match(rmail)) {
+                alert("Enter a valid email format");
+                return false;
+            }
+            if (![...gen].some((radio) => radio.checked)) {
+                alert("Select your gender");
+                return false;
+            }
+            if (!con.trim().match(rnum)) {
+                alert("Enter a valid contact number (9-11 digits)");
+                return false;
+            }
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</body>
+</html>
